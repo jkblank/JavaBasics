@@ -1,11 +1,7 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.InputStream;
 
 public class JavaBasics{
     public static int[] arr;
