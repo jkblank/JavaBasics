@@ -6,36 +6,51 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class JavaBasics{
-    public static int inputArray [];//= new int[50];
+    public static int[] arr;
+    public static int length; 
+    // public static int arr[] = {25,65,85,9,6,25,656,6456,156,65,46,9,23,6,456};
 
     public static void main(String [] args){
-        System.out.println("Hello World");                                  //Create Array of type int
-
+        
+        // arr =new int[]{25,65,85,9,6,25,656,6456,156,65,46,9,23,6,456};
+        System.out.println("Hello World");                                  
         readFile();
-        System.out.println("The unsorted array has values: \n"+inputArray);
-        sortArrayAsc(inputArray);
-        System.out.println("The Sorted array has values: \n"+inputArray);
+        System.out.println("The unsorted array has values: ");
+        for(int i =0; i<length; i++){
+            System.out.println(arr[i]);
+        }
+        sortArrayAsc(arr);
+        System.out.println("The Sorted array has values: ");
+        for(int i =0; i<length; i++){
+            System.out.println(arr[i]);
+        }
     }
     
     public static void readFile(){
         try{
             String basepath = new File("").getAbsolutePath();
-            //System.out.println(basepath);
-            File input = new File(basepath+"\\input.txt");                  //Create readible File object
-            
+            System.out.println(basepath);
+            FileInputStream reader = new FileInputStream(basepath+"\\input.txt");
 
-            InputStream reader = new FileInputStream(input);
             int i =0;
-            inputArray = new int[reader.available()];
-
-            System.out.println("The empty array has values: \n"+inputArray);
-            while(reader.read()!=-1){
-                inputArray[i] = reader.read();
+            length=reader.available()/4;
+            arr= new int[length]; 
+            System.out.println(length);                       //Display number of Ints in file, 4Byte sized spaces
+            Scanner scnr = new Scanner(reader);
+            System.out.println("The empty array has values:");
+            for(i =0; i<length; i++){
+                System.out.println(arr[i]);
+            }
+            i =0;
+            while(scnr.hasNext()){
+                arr[i] = scnr.nextInt();
                 i++;
             }
             System.out.println("Successfully read data from file");
+            scnr.close();
         }catch (Exception e){
             System.out.println("Could not read file because reason: "+ e);
+            
         }
     }
 
