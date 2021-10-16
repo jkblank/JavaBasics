@@ -3,6 +3,8 @@ import java.util.Scanner;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 
 public class JavaBasics{
@@ -24,6 +26,7 @@ public class JavaBasics{
         for(int i =0; i<length; i++){
             System.out.println(arr[i]);
         }
+        writeFile();
     }
     
     public static void readFile(){
@@ -51,6 +54,21 @@ public class JavaBasics{
         }catch (Exception e){
             System.out.println("Could not read file because reason: "+ e);
             
+        }
+    }
+
+    public static void writeFile(){
+        try{
+            String basepath = new File("").getAbsolutePath();
+            FileWriter writer = new FileWriter(basepath+"\\output.txt");
+
+            int i=0;
+            for(i =0; i<length; i++){
+                writer.append(arr[i]+"\n");
+            }
+            writer.close();
+        }catch (Exception  e){
+            System.out.println("Writing Failed due to reason: "+e);
         }
     }
 
